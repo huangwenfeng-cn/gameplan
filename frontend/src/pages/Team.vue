@@ -34,19 +34,19 @@
             placement="left"
             :options="[
               {
-                label: 'Set cover image',
+                label: '设置封面图片',
                 icon: 'image',
                 condition: () => !team.doc.cover_image,
                 onClick: () => (showCoverImage = true),
               },
               {
-                label: 'Archive',
+                label: '归档',
                 icon: 'trash-2',
                 onClick: () => archiveTeam(),
               },
             ]"
             :button="{
-              label: 'Options',
+              label: '选项',
               variant: 'ghost',
               icon: 'more-horizontal',
             }"
@@ -99,10 +99,10 @@ export default {
     archiveTeam() {
       this.$dialog({
         title: 'Archive Team',
-        message: 'Are you sure you want to archive the team?',
+        // message: '确定要归档团队吗?',
         actions: [
           {
-            label: 'Archive',
+            label: '归档',
             variant: 'solid',
             onClick: (close) => {
               return this.team.archive.submit(null, {
