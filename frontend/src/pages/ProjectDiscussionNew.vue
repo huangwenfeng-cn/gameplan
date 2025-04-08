@@ -160,10 +160,10 @@ export default {
       if (!this.$refs.textEditor.editor.isEmpty || this.title) {
         this.$dialog({
           title: 'Discard post',
-          message: 'Are you sure you want to discard your post?',
+          message: '确定要放弃发布吗?',
           actions: [
             {
-              label: 'Discard post',
+              label: '放弃发布',
               onClick: (close) => {
                 localStorage.removeItem(this.draftPostKey())
                 this.$router.push({ name: 'ProjectDiscussions' })
@@ -172,7 +172,7 @@ export default {
               variant: 'solid',
             },
             {
-              label: 'Keep post',
+              label: '保留发布',
             },
           ],
         })
