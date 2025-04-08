@@ -18,7 +18,7 @@
               variant="outline"
               size="md"
               :type="(email || '').toLowerCase() === 'administrator' ? 'text' : 'email'"
-              label="Email"
+              label="邮件"
               v-model="email"
               placeholder="jane@example.com"
               :disabled="session.login.loading"
@@ -28,7 +28,7 @@
             <FormControl
               variant="outline"
               size="md"
-              label="Password"
+              label="密码"
               v-model="password"
               placeholder="••••••"
               :disabled="session.login.loading"
