@@ -8,7 +8,7 @@
     <div class="flex items-center space-x-2">
       <TextInput
         class="flex-1"
-        placeholder="Type a keyword and hit enter to search"
+        placeholder="​输入关键词后按回车键搜索"
         autocomplete="off"
         v-model="query"
         @keydown.enter="(e) => search(e.target.value)"
