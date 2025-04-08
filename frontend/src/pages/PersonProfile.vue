@@ -3,7 +3,7 @@
     <header class="sticky top-0 z-10 flex border-b bg-surface-white px-4 py-2.5 sm:px-5">
       <Breadcrumbs
         :items="[
-          { label: 'People', route: { name: 'People' } },
+          { label: '人员', route: { name: 'People' } },
           {
             label: profile?.full_name,
             route: { name: 'PersonProfile', params: { personId } },
@@ -74,10 +74,10 @@
         <TabButtons
           class="inline-block"
           :buttons="[
-            { label: 'About' },
-            { label: 'Posts' },
-            { label: 'Replies' },
-            { label: 'Bookmarks' },
+            { label: '关于' },
+            { label: '动态' },
+            { label: '回复' },
+            { label: '收藏' },
           ]"
           v-model="activeTab"
         />
@@ -99,9 +99,9 @@
               <UserAvatar size="lg" :user="profile.user" />
               <Button @click="editDialog.editingProfilePhoto = true"> Edit Profile Photo </Button>
             </div>
-            <FormControl label="First Name" v-model="user.first_name" />
-            <FormControl label="Last Name" v-model="user.last_name" />
-            <FormControl label="Bio" v-model="profile.bio" type="textarea" maxlength="280" />
+            <FormControl label="名" v-model="user.first_name" />
+            <FormControl label="姓" v-model="user.last_name" />
+            <FormControl label="简介" v-model="profile.bio" type="textarea" maxlength="280" />
           </template>
         </div>
       </template>
