@@ -4,7 +4,7 @@
       <div class="w-full">
         <header class="sticky top-0 z-10 border-b bg-surface-white px-4 py-2.5 sm:px-5">
           <div class="flex items-center justify-between">
-            <Breadcrumbs :items="[{ label: 'People', route: { name: 'People' } }]" />
+            <Breadcrumbs :items="[{ label: '人员', route: { name: 'People' } }]" />
             <div class="h-7"></div>
           </div>
         </header>
@@ -26,10 +26,10 @@
               <Select
                 class="w-44 pl-7 pr-7"
                 :options="[
-                  { label: 'Name', value: 'full_name asc' },
-                  { label: 'Last updated', value: 'modified desc' },
-                  { label: 'Posts', value: 'posts' },
-                  { label: 'Replies', value: 'replies' },
+                  { label: '姓名', value: 'full_name asc' },
+                  { label: '最近更新', value: 'modified desc' },
+                  { label: '动态', value: 'posts' },
+                  { label: '回复', value: 'replies' },
                 ]"
                 v-model="orderBy"
               >
