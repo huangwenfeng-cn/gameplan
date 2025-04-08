@@ -155,7 +155,7 @@
             <Autocomplete
               :options="moveToTeamsList"
               v-model="projectMoveDialog.team"
-              placeholder="选择团队"
+              placeholder="选择一个团队"
             >
               <template #item-prefix="{ option }">
                 <span class="mr-2">{{ option.icon }}</span>
@@ -212,7 +212,7 @@
             <Autocomplete
               :options="mergeProjectsList"
               v-model="projectMergeDialog.project"
-              placeholder="选择项目"
+              placeholder="选择一个项目"
             >
               <template #item-prefix="{ option }">
                 <span class="mr-2">{{ option.icon }}</span>
