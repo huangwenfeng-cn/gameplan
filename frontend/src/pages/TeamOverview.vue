@@ -12,7 +12,7 @@
       <div class="mb-5 flex items-center justify-between space-x-2">
         <h2 class="text-2xl font-semibold text-ink-gray-9">Projects</h2>
         <div class="flex items-stretch space-x-2">
-          <TabButtons :buttons="[{ label: 'Active' }, { label: 'Archived' }]" v-model="activeTab" />
+          <TabButtons :buttons="[{ label: '活跃' }, { label: '归档' }]" v-model="activeTab" />
           <Button v-if="teamProjects.length" @click="createNewProjectDialog = true" variant="solid">
             <template #prefix>
               <LucidePlus class="h-4 w-4" />
@@ -88,14 +88,14 @@
       <Dialog :options="{ title: 'Create project' }" v-model="createNewProjectDialog">
         <template #body-content>
           <div class="space-y-5">
-            <FormControl label="Title" v-model="newProject.title" @keydown.enter="createProject" />
+            <FormControl label="标题" v-model="newProject.title" @keydown.enter="createProject" />
             <FormControl
               v-if="!team.doc.is_private"
               type="select"
-              label="Visibility"
+              label="可见性"
               :options="[
-                { label: 'Visible to everyone', value: 0 },
-                { label: 'Visible to team members (Private)', value: 1 },
+                { label: '任何人可见', value: 0 },
+                { label: '团队成员可见 (私有)', value: 1 },
               ]"
               v-model="newProject.is_private"
             />
