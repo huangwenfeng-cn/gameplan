@@ -123,7 +123,7 @@
       <Autocomplete
         :options="projectOptions"
         v-model="newDiscussionDialog.project"
-        placeholder="Select a project"
+        placeholder="选择一个项目"
       />
     </template>
   </Dialog>
