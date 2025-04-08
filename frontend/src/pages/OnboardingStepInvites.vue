@@ -3,7 +3,7 @@
     <FormControl
       v-for="(email, index) in modelValue.emails"
       :key="index"
-      label="Email"
+      label="邮件"
       placeholder="jane@example.com"
       :modelValue="email"
       @update:modelValue="
