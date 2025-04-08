@@ -43,7 +43,7 @@
           editor-class="rounded-b-lg max-w-[unset] prose-sm pb-[50vh] md:px-[70px]"
           :content="page.doc.content"
           @change="page.doc.content = $event"
-          placeholder="Start writing here..."
+          placeholder="在此输入..."
           :bubbleMenu="true"
           ref="content"
         />
