@@ -3,7 +3,7 @@
     <header
       class="sticky top-0 z-10 flex items-center justify-between border-b bg-surface-white px-3 sm:px-5 py-2.5"
     >
-      <Breadcrumbs class="h-7" :items="[{ label: 'My Tasks', route: { name: 'MyTasks' } }]" />
+      <Breadcrumbs class="h-7" :items="[{ label: '我的任务', route: { name: 'MyTasks' } }]" />
       <Button variant="solid" @click="showNewTaskDialog">
         <template #prefix>
           <LucidePlus class="h-4 w-4" />
@@ -16,9 +16,9 @@
       <div class="flex pt-3 sm:pt-5">
         <TabButtons
           :buttons="[
-            { label: 'All', value: 'all' },
-            { label: 'Assigned to me', value: 'assigned' },
-            { label: 'Created by me', value: 'owner' },
+            { label: '全部', value: 'all' },
+            { label: '分配给我的', value: 'assigned' },
+            { label: '我创建的', value: 'owner' },
           ]"
           v-model="currentTab"
         />
