@@ -16,7 +16,7 @@
               onClick: () => {
                 $dialog({
                   title: 'Delete Page',
-                  message: 'Are you sure you want to delete this page?',
+                  message: '确定要删除此页面?',
                   actions: [
                     {
                       label: '删除',
