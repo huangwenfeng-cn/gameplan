@@ -15,7 +15,7 @@
               <TextInput
                 class="hidden sm:block"
                 type="text"
-                placeholder="Search"
+                placeholder="搜索"
                 v-model="search"
                 :debounce="500"
               >
@@ -47,7 +47,7 @@
             <TextInput
               class="w-full"
               type="text"
-              placeholder="Search"
+              placeholder="搜索"
               v-model="search"
               :debounce="500"
             >
