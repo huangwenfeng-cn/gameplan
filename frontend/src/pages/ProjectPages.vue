@@ -6,15 +6,15 @@
         <Dropdown
           :options="[
             {
-              label: 'Page Title',
+              label: '页面标题',
               onClick: () => (orderBy = 'title asc'),
             },
             {
-              label: 'Date Updated',
+              label: '更新日期',
               onClick: () => (orderBy = 'modified desc'),
             },
             {
-              label: 'Date Created',
+              label: '创建日期',
               onClick: () => (orderBy = 'creation desc'),
             },
           ]"
