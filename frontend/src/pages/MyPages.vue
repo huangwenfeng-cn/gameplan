@@ -2,25 +2,25 @@
   <header
     class="sticky top-0 z-10 flex items-center justify-between border-b bg-surface-white px-5 py-2.5"
   >
-    <Breadcrumbs class="h-7" :items="[{ label: 'My Pages', route: { name: 'MyPages' } }]" />
+    <Breadcrumbs class="h-7" :items="[{ label: '我的页面', route: { name: 'MyPages' } }]" />
     <div class="flex items-center space-x-2">
       <Select
         :options="[
           {
-            label: 'Sort by',
+            label: '排序',
             value: '',
             disabled: true,
           },
           {
-            label: 'Page Title',
+            label: '页面标题',
             value: 'title asc',
           },
           {
-            label: 'Date Updated',
+            label: '更新日期',
             value: 'modified desc',
           },
           {
-            label: 'Date Created',
+            label: '创建日期',
             value: 'creation desc',
           },
         ]"
