@@ -7,8 +7,8 @@
       fieldname="readme"
       :placeholder="
         $isSessionUser(profile.doc.user)
-          ? 'Write a brief introduction of yourself...'
-          : 'No introduction'
+          ? '简要介绍一下自己...'
+          : '无简介'
       "
       :border="false"
     />
