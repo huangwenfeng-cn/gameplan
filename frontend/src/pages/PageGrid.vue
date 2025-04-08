@@ -6,12 +6,12 @@
         <Dropdown
           :button="{
             icon: 'more-horizontal',
-            label: 'Page Options',
+            label: '页面选项',
             variant: 'ghost',
           }"
           :options="[
             {
-              label: 'Delete',
+              label: '删除',
               icon: 'trash',
               onClick: () => {
                 $dialog({
@@ -19,7 +19,7 @@
                   message: 'Are you sure you want to delete this page?',
                   actions: [
                     {
-                      label: 'Delete',
+                      label: '删除',
                       onClick: (close) => {
                         close()
                         return $resources.pages.delete.submit(d.name)
