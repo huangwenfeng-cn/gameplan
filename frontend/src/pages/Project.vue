@@ -483,7 +483,7 @@ export default {
     archiveProject() {
       this.$dialog({
         title: 'Archive project',
-        message: 'Are you sure you want to archive this project?',
+        message: '确定要归档此项目?',
         actions: [
           {
             label: '归档',
@@ -500,7 +500,7 @@ export default {
     unarchiveProject() {
       this.$dialog({
         title: 'Unarchive Project',
-        message: 'Are you sure you want to unarchive this project?',
+        message: '确定要恢复此项目?',
         actions: [
           {
             label: '恢复',
