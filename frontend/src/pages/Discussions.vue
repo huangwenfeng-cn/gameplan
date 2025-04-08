@@ -2,7 +2,7 @@
   <header
     class="sticky top-0 z-10 flex items-center justify-between border-b bg-surface-white px-3 py-2.5 sm:px-5"
   >
-    <Breadcrumbs class="h-7" :items="[{ label: 'Discussions', route: { name: 'Discussions' } }]" />
+    <Breadcrumbs class="h-7" :items="[{ label: '讨论', route: { name: 'Discussions' } }]" />
     <Button variant="solid" @click="newDiscussionDialog.show = true">
       <template #prefix><LucidePlus class="h-4 w-4" /></template>
       Add new
@@ -67,7 +67,7 @@
                 <Button
                   v-if="isFollowed(project.value)"
                   variant="ghost"
-                  label="Unfollow project"
+                  label="取消关注"
                   @click="unfollowProject(project.value)"
                   :loading="
                     $resources.followedProjects.delete.loading &&
@@ -78,7 +78,7 @@
                 </Button>
                 <Button
                   v-else
-                  label="Follow project"
+                  label="关注项目"
                   variant="ghost"
                   @click="followProject(project.value)"
                   :loading="
@@ -100,7 +100,7 @@
       title: 'New Discussion',
       actions: [
         {
-          label: 'Add new discussion',
+          label: '新增讨论',
           variant: 'solid',
           disabled: !newDiscussionDialog.project,
           onClick() {
@@ -166,31 +166,31 @@ export default {
       swipeLoading: false,
       feedOptions: [
         {
-          label: 'Recent',
+          label: '最近项目',
           value: 'recent',
         },
         {
-          label: 'Unread',
+          label: '未读',
           value: 'unread',
         },
         {
-          label: 'Following',
+          label: '关注中',
           value: 'following',
         },
       ],
       feedType: 'recent',
       orderOptions: [
         {
-          label: 'Sort by',
+          label: '排序',
           value: '',
           disabled: true,
         },
         {
-          label: 'Last post',
+          label: '最新动态',
           value: 'last_post_at desc',
         },
         {
-          label: 'Created',
+          label: '创建时间',
           value: 'creation desc',
         },
       ],
