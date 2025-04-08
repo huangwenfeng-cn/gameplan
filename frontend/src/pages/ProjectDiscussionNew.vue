@@ -50,7 +50,7 @@
       <textarea
         class="mt-1 w-full resize-none border-0 px-0 py-0.5 text-3xl font-bold placeholder-ink-gray-3 focus:ring-0"
         v-model="title"
-        placeholder="Title"
+        placeholder="标题"
         rows="1"
         wrap="soft"
         maxlength="140"
@@ -69,7 +69,7 @@
         editor-class="rounded-b-lg max-w-[unset] prose-sm h-[calc(100vh-340px)] sm:h-[calc(100vh-250px)] overflow-auto"
         :content="content"
         @change="onNewPostChange"
-        placeholder="Write something..."
+        placeholder="开始输入..."
       >
         <template v-slot:bottom>
           <div class="mt-2 flex flex-col justify-between sm:flex-row sm:items-center">
