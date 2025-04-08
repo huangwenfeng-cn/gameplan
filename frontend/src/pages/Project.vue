@@ -124,7 +124,7 @@
               class="mb-2"
               label="标题"
               v-model="project.doc.title"
-              placeholder="Project title"
+              placeholder="项目标题"
             />
             <FormControl
               v-if="!team.doc.is_private"
@@ -155,7 +155,7 @@
             <Autocomplete
               :options="moveToTeamsList"
               v-model="projectMoveDialog.team"
-              placeholder="Select a team"
+              placeholder="选择团队"
             >
               <template #item-prefix="{ option }">
                 <span class="mr-2">{{ option.icon }}</span>
@@ -212,7 +212,7 @@
             <Autocomplete
               :options="mergeProjectsList"
               v-model="projectMergeDialog.project"
-              placeholder="Select a project"
+              placeholder="选择项目"
             >
               <template #item-prefix="{ option }">
                 <span class="mr-2">{{ option.icon }}</span>
