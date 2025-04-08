@@ -69,7 +69,7 @@
         editor-class="rounded-b-lg max-w-[unset] prose-sm h-[calc(100vh-340px)] sm:h-[calc(100vh-250px)] overflow-auto"
         :content="content"
         @change="onNewPostChange"
-        placeholder="开始输入..."
+        placeholder="写点什么..."
       >
         <template v-slot:bottom>
           <div class="mt-2 flex flex-col justify-between sm:flex-row sm:items-center">
