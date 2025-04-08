@@ -46,52 +46,52 @@
             :button="{
               icon: 'more-horizontal',
               variant: 'ghost',
-              label: 'Options',
+              label: '选项',
             }"
             :options="[
               {
-                label: 'Edit',
+                label: '编辑',
                 icon: 'edit',
                 onClick: () => (projectEditDialog.show = true),
                 condition: () => !project.doc.archived_at,
               },
               {
-                label: 'Follow',
+                label: '关注',
                 icon: 'plus',
                 onClick: () => project.follow.submit(),
                 condition: () => isMobile && !project.doc.is_followed,
               },
               {
-                label: 'Following',
+                label: '关注中',
                 icon: 'check',
                 onClick: () => project.unfollow.submit(),
                 condition: () => isMobile && project.doc.is_followed,
               },
               {
-                label: 'Manage Guests',
+                label: '访客管理',
                 icon: 'user-plus',
                 onClick: () => (inviteGuestDialog.show = true),
                 condition: () => !project.doc.archived_at,
               },
               {
-                label: 'Move to another team',
+                label: '转移至其他团队',
                 icon: 'log-out',
                 onClick: () => (projectMoveDialog.show = true),
                 condition: () => !project.doc.archived_at,
               },
               {
-                label: 'Merge with another project',
+                label: '并入其他项目',
                 icon: LucideMerge,
                 onClick: () => (projectMergeDialog.show = true),
               },
               {
-                label: 'Archive this project',
+                label: '归档此项目',
                 icon: 'trash-2',
                 onClick: archiveProject,
                 condition: () => !project.doc.archived_at,
               },
               {
-                label: 'Unarchive this project',
+                label: '恢复此项目',
                 icon: 'trash-2',
                 onClick: unarchiveProject,
                 condition: () => project.doc.archived_at,
@@ -104,7 +104,7 @@
             title: 'Edit Project',
             actions: [
               {
-                label: 'Save',
+                label: '保存',
                 variant: 'solid',
                 onClick({ close }) {
                   return project.setValue
@@ -122,17 +122,17 @@
           <template #body-content>
             <FormControl
               class="mb-2"
-              label="Title"
+              label="标题"
               v-model="project.doc.title"
               placeholder="Project title"
             />
             <FormControl
               v-if="!team.doc.is_private"
-              label="Visibility"
+              label="可见性"
               type="select"
               :options="[
-                { label: 'Visible to everyone', value: 0 },
-                { label: 'Visible to team members (Private)', value: 1 },
+                { label: '任何人可见', value: 0 },
+                { label: '团队成员可见 (私有)', value: 1 },
               ]"
               v-model="project.doc.is_private"
             />
@@ -186,7 +186,7 @@
                 }
               "
             >
-              {{ projectMoveDialog.team ? `Move to ${projectMoveDialog.team.label}` : 'Move' }}
+              {{ projectMoveDialog.team ? `Move to ${projectMoveDialog.team.label}` : '移动' }}
             </Button>
           </template>
         </Dialog>
@@ -383,7 +383,7 @@ export default {
         )
       ) {
         items.push({
-          label: 'Discussions',
+          label: '讨论',
           route: {
             name: 'ProjectDiscussions',
             params: {
@@ -409,7 +409,7 @@ export default {
       }
       if (this.$route.name === 'ProjectDiscussionNew') {
         items.push({
-          label: 'New Discussion',
+          label: '新的讨论',
           route: {
             name: 'ProjectDiscussionNew',
             params: {
@@ -422,7 +422,7 @@ export default {
 
       if (['ProjectTasks', 'ProjectTaskDetail'].includes(this.$route.name)) {
         items.push({
-          label: 'Tasks',
+          label: '任务',
           route: {
             name: 'ProjectTasks',
             params: {
@@ -450,7 +450,7 @@ export default {
 
       if (['ProjectPages', 'ProjectPage'].includes(this.$route.name)) {
         items.push({
-          label: 'Pages',
+          label: '页面',
           route: {
             name: 'ProjectPages',
             params: {
@@ -486,7 +486,7 @@ export default {
         message: 'Are you sure you want to archive this project?',
         actions: [
           {
-            label: 'Archive',
+            label: '归档',
             variant: 'solid',
             onClick: (close) => {
               return this.project.archive.submit(null, {
@@ -503,7 +503,7 @@ export default {
         message: 'Are you sure you want to unarchive this project?',
         actions: [
           {
-            label: 'Unarchive',
+            label: '恢复',
             variant: 'solid',
             onClick: (close) => {
               return this.project.unarchive.submit(null, {
@@ -512,7 +512,7 @@ export default {
             },
           },
           {
-            label: 'Cancel',
+            label: '取消',
           },
         ],
       })
