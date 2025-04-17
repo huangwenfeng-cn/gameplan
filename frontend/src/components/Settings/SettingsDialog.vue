@@ -23,21 +23,8 @@
             </button>
           </div>
         </div>
-        <div class="flex flex-1 flex-col px-16 pt-10">
-          <Tabs v-model="activeTab" className="min-h-0 overflow-y-auto h-[calc(100vh-7rem)]">
-            <Tab id="members" label="成员">
-              <TeamMembers />
-            </Tab>
-            <Tab id="invite" label="邀请">
-              <InvitePeople />
-            </Tab>
-            <Tab id="archived-teams" label="已归档团队">
-              <ArchivedTeams />
-            </Tab>
-            <Tab id="settings" label="设置">
-              <TeamSettings />
-            </Tab>
-          </Tabs>
+        <div class="flex flex-1 flex-col px-16 pt-10 min-h-0 overflow-y-auto h-[calc(100vh-7rem)]">
+          <component :is="activeTab?.component"></component>
         </div>
       </div>
     </template>
@@ -45,7 +32,7 @@
 </template>
 <script>
 import { markRaw, ref } from 'vue'
-import { Dialog, Tabs, Tab } from 'frappe-ui'
+import { Dialog } from 'frappe-ui'
 import Members from './Members.vue'
 import ArchivedTeams from './ArchivedTeams.vue'
 import InvitePeople from './InvitePeople.vue'
@@ -94,8 +81,6 @@ export default {
   name: 'SettingsDialog',
   components: {
     Dialog,
-    Tabs,
-    Tab,
   },
   setup() {
     return { tabs, show, activeTab }
