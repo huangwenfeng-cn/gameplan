@@ -23,7 +23,7 @@
       <FormControl
         label="邮箱"
         v-model="email"
-        placeholder="jane@example.com"
+        placeholder="zhang@example.com"
         @keydown.enter="invite"
       />
       <ErrorMessage class="mt-2" :message="project.inviteGuest.error" />

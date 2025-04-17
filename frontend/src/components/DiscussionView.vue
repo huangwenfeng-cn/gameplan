@@ -72,7 +72,7 @@
                 class="w-full rounded border-0 text-ink-gray-9 px-0 py-0.5 text-2xl font-semibold focus:ring-0"
                 ref="title"
                 v-model="discussion.title"
-                placeholder="Title"
+                placeholder="标题"
                 v-focus
               />
             </div>

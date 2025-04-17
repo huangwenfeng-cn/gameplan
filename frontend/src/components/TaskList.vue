@@ -32,7 +32,7 @@
                   class="h-4 w-4 text-ink-gray-5"
                   v-if="tasks.delete.loading && tasks.delete.params.name === d.name"
                 />
-                <Tooltip text="Change status" v-else>
+                <Tooltip text="更改状态" v-else>
                   <Dropdown
                     :options="
                       statusOptions({
@@ -102,7 +102,7 @@
                       }"
                     ></div>
                     <span class="ml-2 text-base text-ink-gray-5">
-                      {{ d.priority }}
+                      {{ priorityTranslation[d.priority] || d.priority }}
                     </span>
                   </div>
                 </template>
@@ -142,6 +142,13 @@ const statusTranslation = {
   'In Progress': '进行中',
   'Done': '已完成',
   'Canceled': '已取消'
+}
+
+// 优先级翻译映射表
+const priorityTranslation = {
+  'High': '高',
+  'Medium': '中',
+  'Low': '低'
 }
 
 export default {
@@ -231,6 +238,9 @@ export default {
         tasksByStatus[task.status].push(task)
       })
       return tasksByStatus
+    },
+    priorityTranslation() {
+      return priorityTranslation;
     },
   },
 }

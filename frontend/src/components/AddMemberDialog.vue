@@ -24,7 +24,7 @@
         <Autocomplete
           :options="invitableUsers"
           v-model="selectedUser"
-          placeholder="Add member by name"
+          placeholder="通过名称添加成员"
         >
           <template #item-prefix="{ option }">
             <UserAvatar :user="option.email" size="sm" />
@@ -33,7 +33,7 @@
         <ErrorMessage class="mt-2" :message="resource.addMembers.error" />
       </div>
       <div class="mt-4" v-show="!addMembersIntent">
-        <h4 class="text-base font-medium">Members</h4>
+        <h4 class="text-base font-medium">成员</h4>
         <ul role="list" class="mt-2 divide-y">
           <li class="flex w-full items-center py-2" v-for="member in members" :key="member.name">
             <UserAvatar :user="member.user" />
@@ -65,7 +65,7 @@
         @click="sendInvites"
         :loading="resource.addMembers.loading"
       >
-        Add
+        添加
       </Button>
     </template>
   </Dialog>

@@ -112,7 +112,7 @@
               onClick: discardComment,
             }"
             :editable="showCommentBox"
-            placeholder="Add a comment"
+            placeholder="添加评论"
           />
           <PollEditor
             v-show="newCommentType == 'Poll'"
@@ -324,7 +324,7 @@ export default {
               return data
             })
             this.$toast({
-              title: 'Error adding new comment',
+              title: '添加新评论时出错',
               text: error.messages.join(', '),
               position: 'bottom-center',
               icon: 'alert-circle',
@@ -360,11 +360,11 @@ export default {
     discardComment() {
       if (!this.editorObject.isEmpty) {
         this.$dialog({
-          title: 'Discard comment',
-          message: 'Are you sure you want to discard your comment?',
+          title: '放弃评论',
+          message: '您确定要放弃您的评论吗？',
           actions: [
             {
-              label: 'Discard comment',
+              label: '放弃评论',
               onClick: (close) => {
                 this.resetCommentState()
                 close()
@@ -372,7 +372,7 @@ export default {
               variant: 'solid',
             },
             {
-              label: 'Keep comment',
+              label: '保留评论',
             },
           ],
         })

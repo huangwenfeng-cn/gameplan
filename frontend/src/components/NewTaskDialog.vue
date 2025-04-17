@@ -33,7 +33,7 @@
               {{ statusTranslation[newTask.status] || newTask.status }}
             </Button>
           </Dropdown>
-          <TextInput type="date" placeholder="设置截止日期" v-model="newTask.due_date" />
+          <DatePicker placeholder="设置截止日期" v-model="newTask.due_date" />
           <Autocomplete
             placeholder="分配给用户"
             :options="assignableUsers"
@@ -47,7 +47,7 @@
 </template>
 <script setup>
 import { ref, computed, h } from 'vue'
-import { Dialog, FormControl, Autocomplete, Dropdown, TextInput, createResource } from 'frappe-ui'
+import { Dialog, FormControl, Autocomplete, Dropdown, DatePicker, createResource } from 'frappe-ui'
 import TaskStatusIcon from './icons/TaskStatusIcon.vue'
 import { activeUsers } from '@/data/users'
 import { activeTeams } from '@/data/teams'

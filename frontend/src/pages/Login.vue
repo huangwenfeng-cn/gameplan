@@ -20,7 +20,7 @@
               :type="(email || '').toLowerCase() === 'administrator' ? 'text' : 'email'"
               label="邮箱"
               v-model="email"
-              placeholder="jane@example.com"
+              placeholder="zhang@example.com"
               :disabled="session.login.loading"
             />
           </div>

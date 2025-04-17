@@ -12,7 +12,7 @@
             <div class="flex-1">
               <TextInput
                 type="text"
-                placeholder="search by keyword"
+                placeholder="通过关键词搜索"
                 v-model="search"
                 :debounce="300"
               />
@@ -21,7 +21,7 @@
               <template v-slot="{ file, progress, uploading, openFileSelector }">
                 <div class="w-full text-center">
                   <Button @click="openFileSelector" :loading="uploading">
-                    {{ uploading ? `Uploading ${progress}%` : 'Upload Image' }}
+                    {{ uploading ? `上传中 ${progress}%` : '上传图片' }}
                   </Button>
                 </div>
               </template>
@@ -38,8 +38,9 @@
             </button>
           </div>
           <div class="mt-2 text-center text-sm text-ink-gray-4">
-            Image search powered by
+            图片搜索由
             <a class="underline" target="_blank" href="https://unsplash.com"> Unsplash </a>
+            提供支持
           </div>
         </div>
       </div>
