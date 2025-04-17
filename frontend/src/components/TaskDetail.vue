@@ -3,7 +3,7 @@
     <div class="w-full flex-1">
       <div class="relative p-6">
         <div class="absolute right-0 top-0 p-6" v-show="$resources.task.setValueDebounced.loading">
-          <LoadingText v-if="!$resources.task.setValueDebounced.error" text="Saving..." />
+          <LoadingText v-if="!$resources.task.setValueDebounced.error" text="保存中..." />
           <ErrorMessage :message="$resources.task.setValueDebounced.error" />
         </div>
         <div class="mb-2 flex items-center justify-between space-x-2">
@@ -98,7 +98,7 @@
               <template v-if="$resources.task.doc.priority" #prefix>
                 <TaskPriorityIcon :priority="$resources.task.doc.priority" />
               </template>
-              {{ $resources.task.doc.priority || '设置优先级' }}
+              {{ priorityTranslation[$resources.task.doc.priority] || $resources.task.doc.priority || '设置优先级' }}
             </Button>
           </Dropdown>
           <Autocomplete
@@ -163,7 +163,7 @@
               <template v-if="$resources.task.doc.priority" #prefix>
                 <TaskPriorityIcon :priority="$resources.task.doc.priority" />
               </template>
-              {{ $resources.task.doc.priority || '设置优先级' }}
+              {{ priorityTranslation[$resources.task.doc.priority] || $resources.task.doc.priority || '设置优先级' }}
             </Button>
           </Dropdown>
         </div>
@@ -193,6 +193,13 @@ const statusTranslation = {
   'In Progress': '进行中',
   'Done': '已完成',
   'Canceled': '已取消'
+}
+
+// 任务优先级翻译映射表
+const priorityTranslation = {
+  'Low': '低',
+  'Medium': '中',
+  'High': '高'
 }
 
 export default {
@@ -280,7 +287,7 @@ export default {
       return ['Low', 'Medium', 'High'].map((priority) => {
         return {
           icon: () => h(TaskPriorityIcon, { priority }),
-          label: priority,
+          label: priorityTranslation[priority] || priority,
           onClick: () => this.$resources.task.setValue.submit({ priority }),
         }
       })

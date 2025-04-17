@@ -52,3 +52,13 @@ export function getPlatform() {
     return 'linux'
   }
 }
+
+/**
+ * 过滤错误消息中的技术术语
+ * 移除错误消息中的英文技术术语，使消息更易读
+ */
+export function filterErrorMessage(errorMsg) {
+  if (!errorMsg) return '';
+  // 过滤掉 "GP Project"、"GP Team" 等英文术语
+  return errorMsg.replace(/GP Project|GP Team|DocType[\w\s]*:/g, "");
+}

@@ -99,7 +99,7 @@
               ]"
               v-model="newProject.is_private"
             />
-            <ErrorMessage :message="projects.insert.error" />
+            <ErrorMessage :message="filterErrorMessage(projects.insert.error)" />
           </div>
         </template>
         <template #actions>
@@ -120,6 +120,7 @@
 <script>
 import { Dialog, FormControl, TextInput, TabButtons } from 'frappe-ui'
 import { projects, getTeamProjects, getTeamArchivedProjects } from '@/data/projects'
+import { filterErrorMessage } from '@/utils'
 
 export default {
   name: 'TeamOverview',

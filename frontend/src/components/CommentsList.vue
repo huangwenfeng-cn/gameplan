@@ -30,7 +30,7 @@
           <span
             class="absolute -top-2 left-1/2 -translate-x-1/2 bg-surface-white px-2 text-sm font-medium text-ink-blue-3"
           >
-            New comments
+            新评论
           </span>
         </div>
         <Comment
@@ -64,13 +64,13 @@
             class="flex w-full items-center rounded-md border px-2 py-2 text-left text-base text-ink-gray-5 hover:border-outline-gray-3"
             @click="showCommentBox = true"
           >
-            Add a comment
+            添加评论
           </button>
           <div class="absolute inset-y-0 right-0 flex items-center pr-1">
-            <Tooltip text="Add a poll">
+            <Tooltip text="添加投票">
               <Button
                 variant="ghost"
-                label="Add a poll"
+                label="添加投票"
                 @click="
                   () => {
                     newCommentType = 'Poll'
