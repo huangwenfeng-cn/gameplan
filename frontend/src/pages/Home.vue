@@ -20,16 +20,16 @@ import { Breadcrumbs, getCachedDocumentResource, usePageMeta } from 'frappe-ui'
 
 let breadcrumbs = computed(() => {
   let route = useRoute()
-  let items = [{ label: 'Home', route: { name: 'Home' } }]
+  let items = [{ label: '首页', route: { name: 'Home' } }]
   if (route.name === 'Discussions') {
     items.push({
-      label: 'Discussions',
+      label: '讨论',
       route: { name: 'Discussions' },
     })
   }
   if (['MyTasks', 'Task'].includes(route.name)) {
     items.push({
-      label: 'My Tasks',
+      label: '我的任务',
       route: { name: 'MyTasks' },
     })
   }
@@ -45,7 +45,7 @@ let breadcrumbs = computed(() => {
 
 usePageMeta(() => {
   return {
-    title: 'Home',
+    title: '首页',
   }
 })
 </script>

@@ -7,7 +7,7 @@
       >
         <GameplanLogo class="w-8 h-8 rounded" />
         <div class="ml-2 flex flex-col">
-          <div class="text-base font-medium text-ink-gray-9 leading-none">Gameplan</div>
+          <div class="text-base font-medium text-ink-gray-9 leading-none">团队计划</div>
           <div class="mt-1 hidden text-sm text-ink-gray-7 sm:inline leading-none">
             {{ user.full_name }}
           </div>
@@ -32,7 +32,7 @@ const user = getUser()
 const dropdownItems = computed(() => [
   {
     icon: 'user',
-    label: 'My Profile',
+    label: '个人资料',
     route: {
       name: 'PersonProfile',
       params: { personId: user.user_profile },
@@ -40,18 +40,18 @@ const dropdownItems = computed(() => [
   },
   {
     icon: 'settings',
-    label: 'Settings & Members',
+    label: '设置与成员',
     onClick: () => showSettingsDialog(),
     condition: () => user.isNotGuest,
   },
   {
     icon: LucideMoon,
-    label: 'Toggle theme',
+    label: '切换主题',
     onClick: toggleTheme,
   },
   {
     icon: () => h(LucideCreditCard),
-    label: 'Subscription',
+    label: '订阅',
     condition: () => user.isNotGuest && window.frappecloud_host && window.site_name,
     onClick: () => {
       window.open(`${window.frappecloud_host}/dashboard/subscription/${window.site_name}`, '_blank')
@@ -59,7 +59,7 @@ const dropdownItems = computed(() => [
   },
   {
     icon: 'log-out',
-    label: 'Log out',
+    label: '退出登录',
     onClick: () => session.logout.submit(),
   },
 ])

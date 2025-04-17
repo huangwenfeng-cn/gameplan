@@ -9,7 +9,7 @@
         <div class="mb-2 flex items-center justify-between space-x-2">
           <input
             type="text"
-            placeholder="Title"
+            placeholder="标题"
             class="-ml-0.5 w-full rounded-sm border-none p-0.5 text-2xl bg-surface-white font-semibold text-ink-gray-9 focus:outline-none focus:ring-2 focus:ring-outline-gray-3"
             @change="
               $resources.task.setValueDebounced.submit({
@@ -22,14 +22,14 @@
           <Dropdown
             :options="[
               {
-                label: 'Delete',
+                label: '删除',
                 onClick: () => {
                   $dialog({
-                    title: 'Delete task',
-                    message: 'Are you sure you want to delete this task?',
+                    title: '删除任务',
+                    message: '您确定要删除这个任务吗？',
                     actions: [
                       {
-                        label: 'Delete',
+                        label: '删除',
                         theme: 'red',
                         variant: 'solid',
                         onClick(close) {
@@ -55,7 +55,7 @@
         <TextEditor
           ref="description"
           editor-class="prose-sm max-w-none focus-within:ring-2 focus-within:ring-outline-gray-3 rounded-sm p-0.5 -ml-0.5 min-h-[4rem]"
-          placeholder="Description"
+          placeholder="描述"
           :content="$resources.task.doc.description"
           :bubbleMenu="true"
           :floatingMenu="true"
@@ -69,7 +69,7 @@
         />
         <div class="mt-8 flex flex-wrap items-center gap-2 sm:hidden">
           <Autocomplete
-            placeholder="Assign a user"
+            placeholder="分配给用户"
             :options="assignableUsers"
             v-model="$resources.task.doc.assigned_to"
             @update:modelValue="changeAssignee"
@@ -77,7 +77,7 @@
           <DatePicker
             v-model="$resources.task.doc.due_date"
             variant="subtle"
-            placeholder="Due date"
+            placeholder="截止日期"
             :disabled="false"
             @update:modelValue="
               $resources.task.setValue.submit({
@@ -90,7 +90,7 @@
               <template #prefix>
                 <TaskStatusIcon :status="$resources.task.doc.status" />
               </template>
-              {{ $resources.task.doc.status || 'Set status' }}
+              {{ statusTranslation[$resources.task.doc.status] || $resources.task.doc.status || '设置状态' }}
             </Button>
           </Dropdown>
           <Dropdown :options="priorityOptions">
@@ -98,11 +98,11 @@
               <template v-if="$resources.task.doc.priority" #prefix>
                 <TaskPriorityIcon :priority="$resources.task.doc.priority" />
               </template>
-              {{ $resources.task.doc.priority || 'Set priority' }}
+              {{ $resources.task.doc.priority || '设置优先级' }}
             </Button>
           </Dropdown>
           <Autocomplete
-            placeholder="Select project"
+            placeholder="选择项目"
             :options="projectOptions"
             v-model="$resources.task.doc.project"
             @update:modelValue="changeProject"
@@ -113,21 +113,21 @@
     </div>
     <div class="hidden w-[20rem] shrink-0 border-l sm:block">
       <div class="grid grid-cols-2 items-center gap-y-6 p-6 text-base text-ink-gray-7">
-        <div>Assignee</div>
+        <div>分配给</div>
         <div>
           <Autocomplete
-            placeholder="Assign a user"
+            placeholder="分配给用户"
             :options="assignableUsers"
             v-model="$resources.task.doc.assigned_to"
             @update:modelValue="changeAssignee"
           />
         </div>
-        <div>Due Date</div>
+        <div>截止日期</div>
         <div>
           <DatePicker
             v-model="$resources.task.doc.due_date"
             variant="subtle"
-            placeholder="Due date"
+            placeholder="截止日期"
             :disabled="false"
             @update:modelValue="
               $resources.task.setValue.submit({
@@ -136,34 +136,34 @@
             "
           />
         </div>
-        <div>Project</div>
+        <div>项目</div>
         <div>
           <Autocomplete
-            placeholder="Select project"
+            placeholder="选择项目"
             :options="projectOptions"
             v-model="$resources.task.doc.project"
             @update:modelValue="changeProject"
           />
         </div>
-        <div>Status</div>
+        <div>状态</div>
         <div>
           <Dropdown :options="statusOptions">
             <Button>
               <template #prefix>
                 <TaskStatusIcon :status="$resources.task.doc.status" />
               </template>
-              {{ $resources.task.doc.status || 'Set status' }}
+              {{ statusTranslation[$resources.task.doc.status] || $resources.task.doc.status || '设置状态' }}
             </Button>
           </Dropdown>
         </div>
-        <div>Priority</div>
+        <div>优先级</div>
         <div>
           <Dropdown :options="priorityOptions">
             <Button>
               <template v-if="$resources.task.doc.priority" #prefix>
                 <TaskPriorityIcon :priority="$resources.task.doc.priority" />
               </template>
-              {{ $resources.task.doc.priority || 'Set priority' }}
+              {{ $resources.task.doc.priority || '设置优先级' }}
             </Button>
           </Dropdown>
         </div>
@@ -172,7 +172,8 @@
   </div>
 </template>
 <script>
-import { h } from 'vue'
+import { h, ref, computed } from 'vue'
+import { useRouter } from 'vue-router'
 import TextEditor from '@/components/TextEditor.vue'
 import ReadmeEditor from '@/components/ReadmeEditor.vue'
 import CommentsArea from '@/components/CommentsArea.vue'
@@ -184,6 +185,15 @@ import TaskPriorityIcon from '@/components/icons/TaskPriorityIcon.vue'
 import { activeUsers } from '@/data/users'
 import { activeTeams } from '@/data/teams'
 import { getTeamProjects } from '@/data/projects'
+
+// 任务状态翻译映射表
+const statusTranslation = {
+  'Backlog': '待办池',
+  'Todo': '待处理',
+  'In Progress': '进行中',
+  'Done': '已完成',
+  'Canceled': '已取消'
+}
 
 export default {
   name: 'TaskDetail',
@@ -202,7 +212,7 @@ export default {
           onError(e) {
             let message = e.messages ? e.messages.join('\n') : e.message
             this.$toast({
-              title: 'Task Update Error',
+              title: '任务更新错误',
               text: message,
               icon: 'alert-circle',
               iconClasses: 'text-ink-red-4',
@@ -261,7 +271,7 @@ export default {
       return ['Backlog', 'Todo', 'In Progress', 'Done', 'Canceled'].map((status) => {
         return {
           icon: () => h(TaskStatusIcon, { status }),
-          label: status,
+          label: statusTranslation[status] || status,
           onClick: () => this.$resources.task.setValue.submit({ status }),
         }
       })

@@ -12,7 +12,7 @@
               <LucideSearch class="h-4 w-4 text-ink-gray-7" />
             </div>
             <ComboboxInput
-              placeholder="Search"
+              placeholder="搜索"
               class="w-full border-none bg-transparent py-3 pl-11.5 pr-4.5 text-base text-ink-gray-8 placeholder-ink-gray-4 focus:ring-0"
               @input="onInput"
               autocomplete="off"
@@ -266,22 +266,22 @@ export default {
     },
     navigationItems() {
       return {
-        title: 'Jump to',
+        title: '跳转到',
         component: 'Item',
         items: [
           {
-            title: 'Home',
+            title: '首页',
             icon: () => h(LucideHome),
             route: { name: 'Home' },
           },
           {
-            title: 'People',
+            title: '人员',
             icon: () => h(LucideUsers),
             route: { name: 'People' },
             condition: () => this.$user().isNotGuest,
           },
           {
-            title: 'Notifications',
+            title: '通知',
             icon: () => h(LucideBell),
             route: { name: 'Notifications' },
             condition: () => this.$user().isNotGuest,
@@ -291,12 +291,12 @@ export default {
     },
     fullSearchItem() {
       return {
-        title: 'Search',
+        title: '搜索',
         hideTitle: true,
         component: 'Item',
         items: [
           {
-            title: `Search for "${this.query}"`,
+            title: `搜索"${this.query}"`,
             icon: () => h(LucideSearch),
             route: { name: 'Search', query: { q: this.query } },
           },

@@ -11,7 +11,7 @@
         </span>
         <span class="ml-2 text-sm text-ink-gray-5">{{ group.tasks.length }}</span>
         <span class="ml-auto hidden text-sm text-ink-gray-5 group-hover:inline">
-          {{ isOpen[group.title] ? 'Collapse' : 'Expand' }}
+          {{ isOpen[group.title] ? '折叠' : '展开' }}
         </span>
       </button>
       <div :class="{ hidden: !(isOpen[group.title] ?? true) }">
@@ -127,13 +127,22 @@
     class="flex flex-col items-center rounded-lg border-2 border-dashed py-8 text-base text-ink-gray-5"
     v-else
   >
-    No tasks
+    无任务
   </div>
 </template>
 <script>
 import { h } from 'vue'
 import { LoadingIndicator, Dropdown, Tooltip } from 'frappe-ui'
 import TaskStatusIcon from './icons/TaskStatusIcon.vue'
+
+// 任务状态翻译映射表
+const statusTranslation = {
+  'Backlog': '待办池',
+  'Todo': '待处理',
+  'In Progress': '进行中',
+  'Done': '已完成',
+  'Canceled': '已取消'
+}
 
 export default {
   name: 'TaskList',
@@ -185,7 +194,7 @@ export default {
       return ['Backlog', 'Todo', 'In Progress', 'Done', 'Canceled'].map((status) => {
         return {
           icon: () => h(TaskStatusIcon, { status }),
-          label: status,
+          label: statusTranslation[status] || status,
           onClick: () => onClick(status),
         }
       })
@@ -208,7 +217,7 @@ export default {
       return ['In Progress', 'Todo', 'Backlog', 'Done', 'Canceled'].map((status) => {
         return {
           id: status,
-          title: status,
+          title: statusTranslation[status] || status,
           tasks: this.tasksByStatus[status] || [],
         }
       })

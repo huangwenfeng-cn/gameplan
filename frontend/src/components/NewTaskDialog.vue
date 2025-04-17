@@ -1,10 +1,10 @@
 <template>
   <Dialog
     :options="{
-      title: 'New Task',
+      title: '新建任务',
       actions: [
         {
-          label: 'Create',
+          label: '创建',
           variant: 'solid',
           onClick: onCreateClick,
         },
@@ -16,8 +16,8 @@
   >
     <template #body-content>
       <div class="space-y-4">
-        <FormControl label="Title" v-model="newTask.title" autocomplete="off" />
-        <FormControl label="Description" type="textarea" v-model="newTask.description" />
+        <FormControl label="标题" v-model="newTask.title" autocomplete="off" />
+        <FormControl label="描述" type="textarea" v-model="newTask.description" />
         <div class="flex space-x-2">
           <Dropdown
             :options="
@@ -30,12 +30,12 @@
               <template #prefix>
                 <TaskStatusIcon :status="newTask.status" />
               </template>
-              {{ newTask.status }}
+              {{ statusTranslation[newTask.status] || newTask.status }}
             </Button>
           </Dropdown>
-          <TextInput type="date" placeholder="Set due date" v-model="newTask.due_date" />
+          <TextInput type="date" placeholder="设置截止日期" v-model="newTask.due_date" />
           <Autocomplete
-            placeholder="Assign a user"
+            placeholder="分配给用户"
             :options="assignableUsers"
             v-model="newTask.assigned_to"
           />
@@ -50,6 +50,8 @@ import { ref, computed, h } from 'vue'
 import { Dialog, FormControl, Autocomplete, Dropdown, TextInput, createResource } from 'frappe-ui'
 import TaskStatusIcon from './icons/TaskStatusIcon.vue'
 import { activeUsers } from '@/data/users'
+import { activeTeams } from '@/data/teams'
+import { getTeamProjects } from '@/data/projects'
 
 const props = defineProps(['modelValue', 'defaults'])
 const emit = defineEmits(['update:modelValue'])
@@ -75,11 +77,20 @@ const initialData = {
 
 const newTask = ref(initialData)
 
+// 任务状态翻译映射表
+const statusTranslation = {
+  'Backlog': '待办池',
+  'Todo': '待处理',
+  'In Progress': '进行中',
+  'Done': '已完成',
+  'Canceled': '已取消'
+}
+
 function statusOptions({ onClick }) {
   return ['Backlog', 'Todo', 'In Progress', 'Done', 'Canceled'].map((status) => {
     return {
       icon: () => h(TaskStatusIcon, { status }),
-      label: status,
+      label: statusTranslation[status] || status,
       onClick: () => onClick(status),
     }
   })

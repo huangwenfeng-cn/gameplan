@@ -3,7 +3,7 @@
     <template #body>
       <div class="flex" :style="{ height: 'calc(100vh - 8rem)' }">
         <div class="flex w-52 shrink-0 flex-col bg-surface-menu-bar p-2">
-          <h1 class="px-2 pt-2 text-lg font-semibold">Settings</h1>
+          <h1 class="px-2 pt-2 text-lg font-semibold">设置</h1>
           <div class="mt-3">
             <button
               class="flex h-7 w-full items-center gap-2 rounded px-2 py-1"
@@ -24,7 +24,20 @@
           </div>
         </div>
         <div class="flex flex-1 flex-col px-16 pt-10">
-          <component v-if="activeTab" :is="activeTab.component" @close-dialog="show = false" />
+          <Tabs v-model="activeTab" className="min-h-0 overflow-y-auto h-[calc(100vh-7rem)]">
+            <Tab id="members" label="成员">
+              <TeamMembers />
+            </Tab>
+            <Tab id="invite" label="邀请">
+              <InvitePeople />
+            </Tab>
+            <Tab id="archived-teams" label="已归档团队">
+              <ArchivedTeams />
+            </Tab>
+            <Tab id="settings" label="设置">
+              <TeamSettings />
+            </Tab>
+          </Tabs>
         </div>
       </div>
     </template>
@@ -32,7 +45,7 @@
 </template>
 <script>
 import { markRaw, ref } from 'vue'
-import { Dialog } from 'frappe-ui'
+import { Dialog, Tabs, Tab } from 'frappe-ui'
 import Members from './Members.vue'
 import ArchivedTeams from './ArchivedTeams.vue'
 import InvitePeople from './InvitePeople.vue'
@@ -44,22 +57,22 @@ import LucideSettings from '~icons/lucide/settings'
 
 let tabs = [
   {
-    label: 'Members',
+    label: '成员',
     icon: LucideUsers,
     component: markRaw(Members),
   },
   {
-    label: 'Invites',
+    label: '邀请',
     icon: LucideUsersPlus,
     component: markRaw(InvitePeople),
   },
   {
-    label: 'Archive',
+    label: '已归档团队',
     icon: LucideFolderMinus,
     component: markRaw(ArchivedTeams),
   },
   {
-    label: 'Settings',
+    label: '设置',
     icon: LucideSettings,
     component: markRaw(SettingsTabDialog),
   },
@@ -81,6 +94,8 @@ export default {
   name: 'SettingsDialog',
   components: {
     Dialog,
+    Tabs,
+    Tab,
   },
   setup() {
     return { tabs, show, activeTab }

@@ -1,9 +1,9 @@
 <template>
   <div class="flex min-h-0 flex-col">
     <div class="flex items-center justify-between">
-      <h2 class="text-xl font-semibold leading-none">Members</h2>
+      <h2 class="text-xl font-semibold leading-none">成员</h2>
       <div class="flex items-center gap-4">
-        <FormControl placeholder="Search" @input="search = $event.target.value" :debounce="300">
+        <FormControl placeholder="搜索" @input="search = $event.target.value" :debounce="300">
           <template #prefix>
             <LucideSearch class="h-4 w-4 text-ink-gray-4" />
           </template>
@@ -95,12 +95,12 @@ export default {
   methods: {
     changeUserRole({ user, role }) {
       this.$dialog({
-        title: 'Change Role',
-        message: `Are you sure you want to change ${user.full_name}'s role to ${role}?`,
+        title: '更改角色',
+        message: `您确定要将 ${user.full_name} 的角色更改为 ${role} 吗？`,
         error: computed(() => this.$resources.changeUserRole.error),
         actions: [
           {
-            label: 'Change Role',
+            label: '更改角色',
             variant: 'solid',
             onClick: (close) => {
               return this.$resources.changeUserRole.submit(
@@ -110,19 +110,19 @@ export default {
             },
           },
           {
-            label: 'Cancel',
+            label: '取消',
           },
         ],
       })
     },
     removeUser(user) {
       this.$dialog({
-        title: 'Remove User',
-        message: `Are you sure you want to remove ${user.full_name} (${user.email})?`,
+        title: '移除用户',
+        message: `您确定要移除 ${user.full_name} (${user.email}) 吗？`,
         error: computed(() => this.$resources.removeUser.error),
         actions: [
           {
-            label: 'Remove User',
+            label: '移除用户',
             variant: 'solid',
             theme: 'red',
             onClick: (close) => {
@@ -130,7 +130,7 @@ export default {
             },
           },
           {
-            label: 'Cancel',
+            label: '取消',
           },
         ],
       })
@@ -141,10 +141,10 @@ export default {
     getDropdownOptions(user) {
       return [
         {
-          label: 'Admin',
+          label: '管理员',
           component: (props) =>
             RoleOption({
-              role: 'Admin',
+              role: '管理员',
               active: props.active,
               selected: user.role === 'Gameplan Admin',
               onClick: () =>
@@ -155,10 +155,10 @@ export default {
             }),
         },
         {
-          label: 'Member',
+          label: '成员',
           component: (props) =>
             RoleOption({
-              role: 'Member',
+              role: '成员',
               active: props.active,
               selected: user.role === 'Gameplan Member',
               onClick: () =>
@@ -169,10 +169,10 @@ export default {
             }),
         },
         {
-          label: 'Guest',
+          label: '访客',
           component: (props) =>
             RoleOption({
-              role: 'Guest',
+              role: '访客',
               active: props.active,
               selected: user.role === 'Gameplan Guest',
               onClick: () =>
@@ -183,7 +183,7 @@ export default {
             }),
         },
         {
-          label: 'Remove',
+          label: '移除',
           component: (props) =>
             h(
               'button',
@@ -194,7 +194,7 @@ export default {
                 ],
                 onClick: () => this.removeUser(user),
               },
-              'Remove',
+              '移除',
             ),
         },
       ]
