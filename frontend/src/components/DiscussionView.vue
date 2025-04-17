@@ -39,7 +39,7 @@
         <div :class="{ 'pb-4 mt-1': !editingPost }">
           <div class="flex items-start justify-between space-x-1">
             <h1 v-if="!editingPost" class="flex items-center text-2xl font-semibold">
-              <Tooltip v-if="discussion.closed_at" text="This discussion is closed">
+              <Tooltip v-if="discussion.closed_at" text="此讨论已关闭">
                 <LucideLock class="mr-2 h-4 w-4 text-ink-gray-7" :stroke-width="2" />
               </Tooltip>
               <span class="text-ink-gray-9">
@@ -53,8 +53,8 @@
             <span class="text-ink-gray-5">
               {{
                 discussion.participants_count == 1
-                  ? `1 participant`
-                  : `${discussion.participants_count} participants`
+                  ? `1 位参与者`
+                  : `${discussion.participants_count} 位参与者`
               }}
             </span>
           </div>
@@ -118,7 +118,7 @@
       />
       <Dialog
         :options="{
-          title: 'Move discussion to another project',
+          title: '将讨论移动到另一个项目',
         }"
         @close="
           () => {
@@ -132,7 +132,7 @@
           <Autocomplete
             :options="projectOptions"
             v-model="discussionMoveDialog.project"
-            placeholder="Select a project"
+            placeholder="选择一个项目"
           />
           <ErrorMessage class="mt-2" :message="$resources.discussion.moveToProject.error" />
         </template>
@@ -149,8 +149,8 @@
           >
             {{
               discussionMoveDialog.project
-                ? `Move to ${discussionMoveDialog.project.label}`
-                : 'Move'
+                ? `移动到 ${discussionMoveDialog.project.label}`
+                : '移动'
             }}
           </Button>
         </template>
@@ -318,35 +318,35 @@ export default {
     actions() {
       return [
         {
-          label: 'Edit',
+          label: '编辑',
           icon: 'edit',
           onClick: () => {
             this.editingPost = true
           },
         },
         {
-          label: 'Revisions',
+          label: '历史版本',
           icon: 'rotate-ccw',
           onClick: () => (this.showRevisionsDialog = true),
         },
         {
-          label: 'Copy link',
+          label: '复制链接',
           icon: 'link',
           onClick: this.copyLink,
         },
         {
-          label: 'Pin discussion...',
+          label: '置顶讨论...',
           icon: 'arrow-up-left',
           condition: () => !this.discussion.pinned_at,
           onClick: () => {
             let project = this.$getDoc('GP Project', this.discussion.project)
             this.$dialog({
-              title: 'Pin discussion',
-              message: `When a discussion is pinned, it shows up on top of the discussion list in ${project.title}. Do you want to pin this discussion?`,
+              title: '置顶讨论',
+              message: `当讨论被置顶时，它会显示在${project.title}的讨论列表顶部。您要置顶此讨论吗？`,
               icon: { name: 'arrow-up-left' },
               actions: [
                 {
-                  label: 'Pin',
+                  label: '置顶',
                   onClick: (close) => this.$resources.discussion.pinDiscussion.submit().then(close),
                   variant: 'solid',
                 },
@@ -355,17 +355,17 @@ export default {
           },
         },
         {
-          label: 'Unpin discussion...',
+          label: '取消置顶讨论...',
           icon: 'arrow-down-left',
           condition: () => this.discussion.pinned_at,
           onClick: () => {
             this.$dialog({
-              title: 'Unpin discussion',
-              message: `Do you want to unpin this discussion?`,
+              title: '取消置顶讨论',
+              message: `您要取消置顶此讨论吗？`,
               icon: { name: 'arrow-down-left' },
               actions: [
                 {
-                  label: 'Unpin',
+                  label: '取消置顶',
                   onClick: (close) =>
                     this.$resources.discussion.unpinDiscussion.submit().then(close),
                   variant: 'solid',
@@ -375,18 +375,18 @@ export default {
           },
         },
         {
-          label: 'Close discussion...',
+          label: '关闭讨论...',
           icon: 'lock',
           condition: () => !this.discussion.closed_at,
           onClick: () => {
             this.$dialog({
-              title: 'Close discussion',
+              title: '关闭讨论',
               message:
-                'When a discussion is closed, commenting is disabled. Anyone can re-open the discussion later. Do you want to close this discussion?',
+                '当讨论被关闭时，将禁止评论。任何人稍后可以重新打开讨论。您要关闭此讨论吗？',
               icon: { name: 'lock' },
               actions: [
                 {
-                  label: 'Close',
+                  label: '关闭',
                   onClick: (close) =>
                     this.$resources.discussion.closeDiscussion.submit().then(close),
                   variant: 'solid',
@@ -396,17 +396,17 @@ export default {
           },
         },
         {
-          label: 'Re-open discussion...',
+          label: '重新打开讨论...',
           icon: 'unlock',
           condition: () => this.discussion.closed_at,
           onClick: () => {
             this.$dialog({
-              title: 'Re-open discussion',
-              message: 'Do you want to re-open this discussion? Anyone can comment on it again.',
+              title: '重新打开讨论',
+              message: '您要重新打开此讨论吗？任何人都可以再次对其进行评论。',
               icon: { name: 'unlock' },
               actions: [
                 {
-                  label: 'Re-open',
+                  label: '重新打开',
                   onClick: (close) =>
                     this.$resources.discussion.reopenDiscussion.submit().then(close),
                   variant: 'solid',
@@ -416,7 +416,7 @@ export default {
           },
         },
         {
-          label: 'Bookmark',
+          label: '收藏',
           icon: 'bookmark',
           onClick: () => {
             this.$resources.discussion.addBookmark.submit()
@@ -424,7 +424,7 @@ export default {
           condition: () => !this.discussion.is_bookmarked,
         },
         {
-          label: 'Remove Bookmark',
+          label: '取消收藏',
           icon: 'bookmark',
           onClick: () => {
             this.$resources.discussion.removeBookmark.submit()
@@ -432,22 +432,22 @@ export default {
           condition: () => this.discussion.is_bookmarked,
         },
         {
-          label: 'Move to...',
+          label: '移动到...',
           icon: 'log-out',
           onClick: () => {
             this.discussionMoveDialog.show = true
           },
         },
         {
-          label: 'Delete',
+          label: '删除',
           icon: 'trash',
           onClick: () => {
             $dialog({
-              title: 'Delete',
-              message: 'Are you sure you want to delete this post? This is irreversible!',
+              title: '删除',
+              message: '您确定要删除此帖子吗？此操作不可逆！',
               actions: [
                 {
-                  label: 'Delete',
+                  label: '删除',
                   variant: 'solid',
                   theme: 'red',
                   onClick: ({ close }) => {

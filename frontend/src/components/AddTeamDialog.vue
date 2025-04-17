@@ -1,21 +1,21 @@
 <template>
-  <Dialog :options="{ title: 'Add Team' }" v-model="showDialog">
+  <Dialog :options="{ title: '添加团队' }" v-model="showDialog">
     <template #body-content>
       <div class="space-y-4">
         <FormControl
-          label="Team Name"
+          label="团队名称"
           type="text"
           v-model="newTeam.title"
-          placeholder="Team Name"
+          placeholder="团队名称"
           @keydown.enter="createTeam($event.target.value)"
           autocomplete="off"
         />
         <FormControl
           type="select"
-          label="Visibility"
+          label="可见性"
           :options="[
-            { label: 'Visible to everyone', value: 0 },
-            { label: 'Visible to team members (Private)', value: 1 },
+            { label: '对所有人可见', value: 0 },
+            { label: '仅对团队成员可见（私有）', value: 1 },
           ]"
           v-model="newTeam.is_private"
         />
@@ -29,7 +29,7 @@
         @click="createTeam(teamName)"
         :loading="teams.insert.loading"
       >
-        Create Team
+        创建团队
       </Button>
     </template>
   </Dialog>

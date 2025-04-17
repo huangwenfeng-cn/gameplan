@@ -1,17 +1,17 @@
 <template>
   <header class="sticky top-0 z-10 border-b bg-surface-white px-4 py-2.5 sm:px-5">
     <div class="flex items-center justify-between">
-      <Breadcrumbs :items="[{ label: 'Notifications', route: { name: 'Notifications' } }]" />
+      <Breadcrumbs :items="[{ label: '通知', route: { name: 'Notifications' } }]" />
       <div class="flex h-7 items-center space-x-2">
         <Button
           @click="$resources.markAllAsRead.submit"
           :loading="$resources.markAllAsRead.loading"
           v-if="activeTab === 'Unread' && $resources.unreadNotifications.data?.length > 0"
         >
-          Mark all as read
+          标记所有为已读
         </Button>
         <TabButtons
-          :buttons="[{ label: 'Unread', active: true }, { label: 'Read' }]"
+          :buttons="[{ label: '未读', active: true }, { label: '已读' }]"
           v-model="activeTab"
         />
       </div>
@@ -58,9 +58,9 @@
             "
             @click="markAsRead(d.name)"
           >
-            {{ d.discussion ? 'View Discussion' : d.task ? 'View Task' : '' }}
+            {{ d.discussion ? '查看讨论' : d.task ? '查看任务' : '' }}
           </router-link>
-          <Tooltip text="Mark as read">
+          <Tooltip text="标记为已读">
             <Button v-if="!d.read" variant="ghost" @click="markAsRead(d.name)">
               <template #icon>
                 <LucideX class="w-4" />
@@ -70,7 +70,7 @@
         </div>
       </div>
     </div>
-    <div v-if="!notifications?.length" class="text-base text-ink-gray-5">Nothing to see here</div>
+    <div v-if="!notifications?.length" class="text-base text-ink-gray-5">这里没有内容</div>
   </div>
 </template>
 <script>
@@ -81,18 +81,18 @@ export default {
   name: 'Notifications',
   data() {
     return {
-      activeTab: 'Unread',
+      activeTab: '未读',
     }
   },
   pageMeta() {
     return {
-      title: 'Notifications',
+      title: '通知',
     }
   },
   components: { TabButtons, Tooltip, Link, Breadcrumbs },
   resources: {
     unreadNotifications() {
-      if (this.activeTab !== 'Unread') return
+      if (this.activeTab !== '未读') return
       return {
         type: 'list',
         cache: 'Unread Notifications',
@@ -116,7 +116,7 @@ export default {
       }
     },
     readNotifications() {
-      if (this.activeTab !== 'Read') return
+      if (this.activeTab !== '已读') return
       return {
         type: 'list',
         cache: 'Read Notifications',
@@ -151,7 +151,7 @@ export default {
   },
   computed: {
     notifications() {
-      return this.activeTab === 'Unread'
+      return this.activeTab === '未读'
         ? this.$resources.unreadNotifications.data
         : this.$resources.readNotifications.data
     },

@@ -3,7 +3,7 @@
     <header class="sticky top-0 z-10 flex border-b bg-surface-white px-4 py-2.5 sm:px-5">
       <Breadcrumbs
         :items="[
-          { label: 'People', route: { name: 'People' } },
+          { label: '人员', route: { name: 'People' } },
           {
             label: profile?.full_name,
             route: { name: 'PersonProfile', params: { personId } },
@@ -53,7 +53,7 @@
             :class="{ 'hover:bg-surface-gray-4': $isSessionUser(profile.user) }"
             :disabled="!$isSessionUser(profile.user)"
           >
-            <span v-if="$isSessionUser(profile.user)"> Upload Image </span>
+            <span v-if="$isSessionUser(profile.user)"> 上传图片 </span>
           </button>
         </div>
         <div class="ml-6">
@@ -66,7 +66,7 @@
         </div>
         <Button v-if="$isSessionUser(profile.user)" @click="editDialog.show = true" class="ml-auto">
           <template #prefix><LucideEdit class="w-4" /></template>
-          Edit Profile
+          编辑资料
         </Button>
       </div>
 
@@ -74,10 +74,10 @@
         <TabButtons
           class="inline-block"
           :buttons="[
-            { label: 'About' },
-            { label: 'Posts' },
-            { label: 'Replies' },
-            { label: 'Bookmarks' },
+            { label: '关于' },
+            { label: '帖子' },
+            { label: '回复' },
+            { label: '收藏' },
           ]"
           v-model="activeTab"
         />
@@ -87,7 +87,7 @@
     </div>
     <Dialog
       v-if="$isSessionUser(profile.user)"
-      :options="{ title: 'Edit Profile' }"
+      :options="{ title: '编辑资料' }"
       v-model="editDialog.show"
       @after-leave="discard"
     >
@@ -97,11 +97,11 @@
           <template v-else>
             <div class="flex items-center gap-4">
               <UserAvatar size="lg" :user="profile.user" />
-              <Button @click="editDialog.editingProfilePhoto = true"> Edit Profile Photo </Button>
+              <Button @click="editDialog.editingProfilePhoto = true"> 编辑头像 </Button>
             </div>
-            <FormControl label="First Name" v-model="user.first_name" />
-            <FormControl label="Last Name" v-model="user.last_name" />
-            <FormControl label="Bio" v-model="profile.bio" type="textarea" maxlength="280" />
+            <FormControl label="名字" v-model="user.first_name" />
+            <FormControl label="姓氏" v-model="user.last_name" />
+            <FormControl label="简介" v-model="profile.bio" type="textarea" maxlength="280" />
           </template>
         </div>
       </template>
@@ -112,7 +112,7 @@
           @click="save"
           :loading="$resources.user.setValue.loading || $resources.profile.setValue.loading"
         >
-          Save
+          保存
         </Button>
       </template>
     </Dialog>
@@ -186,18 +186,18 @@ export default {
     activeTab: {
       get() {
         return {
-          PersonProfileAboutMe: 'About',
-          PersonProfilePosts: 'Posts',
-          PersonProfileReplies: 'Replies',
-          PersonProfileBookmarks: 'Bookmarks',
+          PersonProfileAboutMe: '关于',
+          PersonProfilePosts: '帖子',
+          PersonProfileReplies: '回复',
+          PersonProfileBookmarks: '收藏',
         }[this.$route.name]
       },
       set(value) {
         let route = {
-          About: { name: 'PersonProfileAboutMe' },
-          Posts: { name: 'PersonProfilePosts' },
-          Replies: { name: 'PersonProfileReplies' },
-          Bookmarks: { name: 'PersonProfileBookmarks' },
+          '关于': { name: 'PersonProfileAboutMe' },
+          '帖子': { name: 'PersonProfilePosts' },
+          '回复': { name: 'PersonProfileReplies' },
+          '收藏': { name: 'PersonProfileBookmarks' },
         }[value]
         if (route) {
           this.$router.push(route)
@@ -231,7 +231,7 @@ export default {
   },
   pageMeta() {
     return {
-      title: [this.profile?.full_name || '', 'Profile'].join(' | '),
+      title: [this.profile?.full_name || '', '个人资料'].join(' | '),
     }
   },
 }

@@ -11,7 +11,7 @@
               <UserProfileLink class="font-medium hover:text-ink-blue-3" :user="$user().name">
                 {{ $user().full_name }}
               </UserProfileLink>
-              in
+              在
               <router-link
                 class="hover:text-ink-blue-3"
                 :to="{
@@ -40,9 +40,9 @@
           </div>
         </div>
         <div class="hidden shrink-0 space-x-2 sm:block">
-          <Button @click="discard">Discard</Button>
+          <Button @click="discard">放弃</Button>
           <Button variant="solid" :loading="$resources.newDiscussion.loading" @click="publish">
-            Publish
+            发布
           </Button>
         </div>
       </div>
@@ -50,7 +50,7 @@
       <textarea
         class="mt-1 w-full resize-none border-0 px-0 py-0.5 text-3xl font-bold placeholder-ink-gray-3 focus:ring-0"
         v-model="title"
-        placeholder="Title"
+        placeholder="标题"
         rows="1"
         wrap="soft"
         maxlength="140"
@@ -69,15 +69,15 @@
         editor-class="rounded-b-lg max-w-[unset] prose-sm h-[calc(100vh-340px)] sm:h-[calc(100vh-250px)] overflow-auto"
         :content="content"
         @change="onNewPostChange"
-        placeholder="Write something..."
+        placeholder="写点什么..."
       >
         <template v-slot:bottom>
           <div class="mt-2 flex flex-col justify-between sm:flex-row sm:items-center">
             <TextEditorFixedMenu class="overflow-x-auto" :buttons="textEditorMenuButtons" />
             <div class="mt-2 shrink-0 space-x-2 text-right sm:hidden">
-              <Button @click="discard">Discard</Button>
+              <Button @click="discard">放弃</Button>
               <Button variant="solid" :loading="$resources.newDiscussion.loading" @click="publish">
-                Publish
+                发布
               </Button>
             </div>
           </div>
@@ -120,7 +120,7 @@ export default {
         },
         validate(params) {
           if (!params.doc.title) {
-            return `Please enter title before publishing.`
+            return `请在发布前输入标题。`
           }
         },
         onSuccess(doc) {
@@ -159,11 +159,11 @@ export default {
     discard() {
       if (!this.$refs.textEditor.editor.isEmpty || this.title) {
         this.$dialog({
-          title: 'Discard post',
-          message: 'Are you sure you want to discard your post?',
+          title: '放弃帖子',
+          message: '您确定要放弃您的帖子吗？',
           actions: [
             {
-              label: 'Discard post',
+              label: '放弃帖子',
               onClick: (close) => {
                 localStorage.removeItem(this.draftPostKey())
                 this.$router.push({ name: 'ProjectDiscussions' })
@@ -172,7 +172,7 @@ export default {
               variant: 'solid',
             },
             {
-              label: 'Keep post',
+              label: '保留帖子',
             },
           ],
         })

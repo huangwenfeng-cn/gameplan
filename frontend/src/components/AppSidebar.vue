@@ -53,7 +53,7 @@
             <span class="grid h-5 w-6 place-items-center">
               <LucideSearch class="h-4 w-4 text-ink-gray-7" />
             </span>
-            <span class="ml-2 text-sm">Search</span>
+            <span class="ml-2 text-sm">搜索</span>
             <span class="ml-auto text-sm text-ink-gray-4">
               <template v-if="$platform === 'mac'">⌘K</template>
               <template v-else>Ctrl+K</template>
@@ -62,8 +62,8 @@
         </button>
       </nav>
       <div class="mt-6 flex items-center justify-between px-3">
-        <h3 class="text-sm font-medium text-ink-gray-5">Teams</h3>
-        <Button label="Create Team" variant="ghost" @click="showAddTeamDialog = true">
+        <h3 class="text-sm font-medium text-ink-gray-5">团队</h3>
+        <Button label="创建团队" variant="ghost" @click="showAddTeamDialog = true">
           <template #icon><LucidePlus class="h-4 w-4" /></template>
         </Button>
       </div>
@@ -117,13 +117,13 @@
               class="flex h-7 items-center px-2 text-sm text-ink-gray-5"
               v-if="teamProjects(team.name).length === 0"
             >
-              No projects
+              没有项目
             </div>
           </div>
         </div>
       </nav>
       <div v-if="teams.fetched && !activeTeams.length" class="px-3 py-2 text-sm text-ink-gray-4">
-        No teams
+        没有团队
       </div>
     </div>
     <AddTeamDialog
@@ -185,14 +185,14 @@ export default {
     navigation() {
       return [
         {
-          name: 'Discussions',
+          name: '讨论',
           icon: LucideNewspaper,
           route: {
             name: 'Discussions',
           },
         },
         {
-          name: 'My Tasks',
+          name: '我的任务',
           icon: LucideListTodo,
           route: {
             name: 'MyTasks',
@@ -200,7 +200,7 @@ export default {
           isActive: /MyTasks|Task/g.test(this.$route.name),
         },
         {
-          name: 'My Pages',
+          name: '我的页面',
           icon: LucideFiles,
           route: {
             name: 'MyPages',
@@ -208,7 +208,7 @@ export default {
           isActive: /MyPages|Page/g.test(this.$route.name),
         },
         {
-          name: 'People',
+          name: '人员',
           icon: LucideUsers2,
           route: {
             name: 'People',
@@ -217,7 +217,7 @@ export default {
           condition: () => this.$user().isNotGuest,
         },
         {
-          name: 'Notifications',
+          name: '通知',
           icon: LucideInbox,
           route: {
             name: 'Notifications',

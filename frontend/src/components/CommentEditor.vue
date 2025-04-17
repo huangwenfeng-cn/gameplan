@@ -15,8 +15,8 @@
       <div v-if="editable" class="mt-2 flex flex-col justify-between sm:flex-row sm:items-center">
         <TextEditorFixedMenu class="-ml-1 overflow-x-auto" :buttons="textEditorMenuButtons" />
         <div class="mt-2 flex items-center justify-end space-x-2 sm:mt-0">
-          <Button v-bind="discardButtonProps || {}"> Discard </Button>
-          <Button variant="solid" v-bind="submitButtonProps || {}"> Submit </Button>
+          <Button v-bind="discardButtonProps || {}"> 放弃 </Button>
+          <Button variant="solid" v-bind="submitButtonProps || {}"> 提交 </Button>
         </div>
       </div>
     </template>

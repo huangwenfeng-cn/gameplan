@@ -2,25 +2,25 @@
   <header
     class="sticky top-0 z-10 flex items-center justify-between border-b bg-surface-white px-5 py-2.5"
   >
-    <Breadcrumbs class="h-7" :items="[{ label: 'My Pages', route: { name: 'MyPages' } }]" />
+    <Breadcrumbs class="h-7" :items="[{ label: '我的页面', route: { name: 'MyPages' } }]" />
     <div class="flex items-center space-x-2">
       <Select
         :options="[
           {
-            label: 'Sort by',
+            label: '排序方式',
             value: '',
             disabled: true,
           },
           {
-            label: 'Page Title',
+            label: '页面标题',
             value: 'title asc',
           },
           {
-            label: 'Date Updated',
+            label: '更新日期',
             value: 'modified desc',
           },
           {
-            label: 'Date Created',
+            label: '创建日期',
             value: 'creation desc',
           },
         ]"
@@ -31,7 +31,7 @@
         <template #prefix>
           <LucidePlus class="h-4 w-4" />
         </template>
-        Add new
+        新增
       </Button>
     </div>
   </header>
@@ -66,7 +66,7 @@ export default {
         params: {
           doc: {
             doctype: 'GP Page',
-            title: 'Untitled',
+            title: '无标题',
             content: '',
           },
         },
@@ -81,7 +81,7 @@ export default {
   },
   pageMeta() {
     return {
-      title: 'My Pages',
+      title: '我的页面',
     }
   },
 }

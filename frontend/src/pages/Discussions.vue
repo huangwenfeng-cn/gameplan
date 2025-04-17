@@ -2,10 +2,10 @@
   <header
     class="sticky top-0 z-10 flex items-center justify-between border-b bg-surface-white px-3 py-2.5 sm:px-5"
   >
-    <Breadcrumbs class="h-7" :items="[{ label: 'Discussions', route: { name: 'Discussions' } }]" />
+    <Breadcrumbs class="h-7" :items="[{ label: '讨论', route: { name: 'Discussions' } }]" />
     <Button variant="solid" @click="newDiscussionDialog.show = true">
       <template #prefix><LucidePlus class="h-4 w-4" /></template>
-      Add new
+      新增
     </Button>
   </header>
   <div
@@ -25,7 +25,7 @@
       >
         <template #prefix><LucideBellPlus class="w-4" /></template>
         {{ $resources.followedProjects.data.length }}
-        {{ $resources.followedProjects.data.length === 1 ? 'Project' : 'Projects' }}
+        {{ $resources.followedProjects.data.length === 1 ? '个项目' : '个项目' }}
       </Button>
       <Select class="pr-7" v-if="feedType === 'recent'" :options="orderOptions" v-model="orderBy" />
     </div>
@@ -40,7 +40,7 @@
   </div>
   <Dialog
     v-model="followProjectsDialog"
-    :options="{ title: 'Select projects to follow' }"
+    :options="{ title: '选择要关注的项目' }"
     @close="$refs.discussionList.discussions.reload()"
   >
     <template #body-content>
@@ -67,7 +67,7 @@
                 <Button
                   v-if="isFollowed(project.value)"
                   variant="ghost"
-                  label="Unfollow project"
+                  label="取消关注项目"
                   @click="unfollowProject(project.value)"
                   :loading="
                     $resources.followedProjects.delete.loading &&
@@ -78,7 +78,7 @@
                 </Button>
                 <Button
                   v-else
-                  label="Follow project"
+                  label="关注项目"
                   variant="ghost"
                   @click="followProject(project.value)"
                   :loading="
@@ -97,10 +97,10 @@
   </Dialog>
   <Dialog
     :options="{
-      title: 'New Discussion',
+      title: '新讨论',
       actions: [
         {
-          label: 'Add new discussion',
+          label: '添加新讨论',
           variant: 'solid',
           disabled: !newDiscussionDialog.project,
           onClick() {
@@ -119,11 +119,11 @@
     v-model="newDiscussionDialog.show"
   >
     <template #body-content>
-      <p class="mb-4 text-base text-ink-gray-7">Select a project to start a new discussion</p>
+      <p class="mb-4 text-base text-ink-gray-7">选择一个项目来开始新讨论</p>
       <Autocomplete
         :options="projectOptions"
         v-model="newDiscussionDialog.project"
-        placeholder="Select a project"
+        placeholder="选择项目"
       />
     </template>
   </Dialog>
@@ -166,31 +166,31 @@ export default {
       swipeLoading: false,
       feedOptions: [
         {
-          label: 'Recent',
+          label: '最近',
           value: 'recent',
         },
         {
-          label: 'Unread',
+          label: '未读',
           value: 'unread',
         },
         {
-          label: 'Following',
+          label: '关注',
           value: 'following',
         },
       ],
       feedType: 'recent',
       orderOptions: [
         {
-          label: 'Sort by',
+          label: '排序方式',
           value: '',
           disabled: true,
         },
         {
-          label: 'Last post',
+          label: '最后发布',
           value: 'last_post_at desc',
         },
         {
-          label: 'Created',
+          label: '创建时间',
           value: 'creation desc',
         },
       ],
@@ -274,7 +274,7 @@ export default {
   },
   pageMeta() {
     return {
-      title: 'Discussions',
+      title: '讨论',
     }
   },
 }

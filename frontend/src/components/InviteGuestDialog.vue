@@ -1,5 +1,5 @@
 <template>
-  <Dialog :options="{ title: 'Manage Guests' }" v-model="inviteGuestDialog">
+  <Dialog :options="{ title: '管理访客' }" v-model="inviteGuestDialog">
     <template #body-content>
       <div class="my-4 space-y-2">
         <div class="flex items-center gap-4" v-for="user in users" :key="user.name">
@@ -8,11 +8,11 @@
             <span class="text-ink-gray-9">
               {{ user.pending ? user.email : $user(user.user).full_name }}
             </span>
-            <span class="text-ink-gray-5" v-if="user.pending"> (Pending)</span>
+            <span class="text-ink-gray-5" v-if="user.pending"> (待确认)</span>
           </div>
           <div class="ml-auto">
-            <Tooltip :text="user.pending ? 'Remove invite' : 'Remove user'">
-              <Button label="Remove" @click="remove(user)">
+            <Tooltip :text="user.pending ? '移除邀请' : '移除用户'">
+              <Button label="移除" @click="remove(user)">
                 <template #icon><LucideX class="w-4" /></template>
               </Button>
             </Tooltip>
@@ -21,7 +21,7 @@
         <Dialog :options="removeDialog.options" v-model="removeDialog.open" />
       </div>
       <FormControl
-        label="Email"
+        label="邮箱"
         v-model="email"
         placeholder="jane@example.com"
         @keydown.enter="invite"
@@ -30,7 +30,7 @@
     </template>
     <template #actions>
       <Button class="w-full" variant="solid" @click="invite" :loading="project.inviteGuest.loading">
-        Invite
+        邀请
       </Button>
     </template>
   </Dialog>
@@ -95,11 +95,11 @@ let removeDialog = reactive({
 function remove(user) {
   if (user.pending) {
     removeDialog.options = {
-      title: 'Delete Invitation',
-      message: 'Are you sure you want to delete this invitation?',
+      title: '删除邀请',
+      message: '您确定要删除此邀请吗？',
       actions: [
         {
-          label: 'Delete',
+          label: '删除',
           variant: 'solid',
           theme: 'red',
           onClick: (close) => {
@@ -110,11 +110,11 @@ function remove(user) {
     }
   } else {
     removeDialog.options = {
-      title: 'Remove Guest User',
-      message: 'Are you sure you want to remove this guest user?',
+      title: '移除访客用户',
+      message: '您确定要移除此访客用户吗？',
       actions: [
         {
-          label: 'Delete',
+          label: '删除',
           variant: 'solid',
           theme: 'red',
           onClick: (close) => {
@@ -130,7 +130,7 @@ function remove(user) {
           },
         },
         {
-          label: 'Cancel',
+          label: '取消',
         },
       ],
     }

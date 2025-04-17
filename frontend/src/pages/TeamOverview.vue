@@ -10,14 +10,14 @@
 
     <div class="mt-8">
       <div class="mb-5 flex items-center justify-between space-x-2">
-        <h2 class="text-2xl font-semibold text-ink-gray-9">Projects</h2>
+        <h2 class="text-2xl font-semibold text-ink-gray-9">项目</h2>
         <div class="flex items-stretch space-x-2">
-          <TabButtons :buttons="[{ label: 'Active' }, { label: 'Archived' }]" v-model="activeTab" />
+          <TabButtons :buttons="[{ label: '活跃' }, { label: '已归档' }]" v-model="activeTab" />
           <Button v-if="teamProjects.length" @click="createNewProjectDialog = true" variant="solid">
             <template #prefix>
               <LucidePlus class="h-4 w-4" />
             </template>
-            Add Project
+            添加项目
           </Button>
         </div>
       </div>
@@ -48,7 +48,7 @@
                     {{ project.tasks_count }}
                   </span>
                   <span class="text-ink-gray-7"
-                    >&nbsp;{{ project.tasks_count === 1 ? 'task' : 'tasks' }}
+                    >&nbsp;{{ project.tasks_count === 1 ? '个任务' : '个任务' }}
                   </span>
                   &middot;
                 </template>
@@ -57,7 +57,7 @@
                     {{ project.discussions_count }}
                   </span>
                   <span class="text-ink-gray-7"
-                    >&nbsp;{{ project.discussions_count === 1 ? 'discussion' : 'discussions' }}
+                    >&nbsp;{{ project.discussions_count === 1 ? '个讨论' : '个讨论' }}
                   </span>
                 </template>
                 <span
@@ -81,21 +81,21 @@
             <LucidePlus class="w-5 text-ink-gray-5" />
           </div>
           <div>
-            <h3 class="text-lg font-medium text-ink-gray-9">Add Project</h3>
+            <h3 class="text-lg font-medium text-ink-gray-9">添加项目</h3>
           </div>
         </button>
       </ul>
-      <Dialog :options="{ title: 'Create project' }" v-model="createNewProjectDialog">
+      <Dialog :options="{ title: '创建项目' }" v-model="createNewProjectDialog">
         <template #body-content>
           <div class="space-y-5">
-            <FormControl label="Title" v-model="newProject.title" @keydown.enter="createProject" />
+            <FormControl label="标题" v-model="newProject.title" @keydown.enter="createProject" />
             <FormControl
               v-if="!team.doc.is_private"
               type="select"
-              label="Visibility"
+              label="可见性"
               :options="[
-                { label: 'Visible to everyone', value: 0 },
-                { label: 'Visible to team members (Private)', value: 1 },
+                { label: '对所有人可见', value: 0 },
+                { label: '仅对团队成员可见（私有）', value: 1 },
               ]"
               v-model="newProject.is_private"
             />
@@ -110,7 +110,7 @@
             @click="createProject"
             :loading="projects.insert.loading"
           >
-            Create
+            创建
           </Button>
         </template>
       </Dialog>
@@ -134,7 +134,7 @@ export default {
     return {
       createNewProjectDialog: false,
       newProject: { title: '', is_private: 0 },
-      activeTab: 'Active',
+      activeTab: '活跃',
     }
   },
   computed: {
@@ -142,7 +142,7 @@ export default {
       return projects
     },
     projectsList() {
-      return this.activeTab === 'Active' ? this.activeProjects : this.archivedProjects
+      return this.activeTab === '活跃' ? this.activeProjects : this.archivedProjects
     },
     activeProjects() {
       return this.teamProjects.filter((project) => !project.archived_at)

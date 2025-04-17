@@ -15,16 +15,16 @@
         <div v-if="$route.name === 'ProjectOverview'" class="flex items-center space-x-2">
           <Tooltip
             v-if="project.doc.is_private"
-            text="This project is only visible to team members"
+            text="此项目仅对团队成员可见"
           >
             <Badge size="lg">
               <template #prefix><LucideLock class="w-3" /></template>
-              Private
+              私有
             </Badge>
           </Tooltip>
           <Badge size="lg" v-if="project.doc.archived_at">
             <template #prefix><LucideArchive class="w-3" /></template>
-            Archived
+            已归档
           </Badge>
           <template v-if="!isMobile">
             <Button
@@ -33,11 +33,11 @@
               :loading="project.unfollow.loading"
             >
               <template #prefix><LucideBell class="w-4" /></template>
-              Following
+              已关注
             </Button>
             <Button v-else @click="project.follow.submit()" :loading="project.follow.loading">
               <template #prefix><LucideBellPlus class="w-4" /></template>
-              Follow
+              关注
             </Button>
           </template>
           <Dropdown
@@ -50,48 +50,48 @@
             }"
             :options="[
               {
-                label: 'Edit',
+                label: '编辑',
                 icon: 'edit',
                 onClick: () => (projectEditDialog.show = true),
                 condition: () => !project.doc.archived_at,
               },
               {
-                label: 'Follow',
+                label: '关注',
                 icon: 'plus',
                 onClick: () => project.follow.submit(),
                 condition: () => isMobile && !project.doc.is_followed,
               },
               {
-                label: 'Following',
+                label: '已关注',
                 icon: 'check',
                 onClick: () => project.unfollow.submit(),
                 condition: () => isMobile && project.doc.is_followed,
               },
               {
-                label: 'Manage Guests',
+                label: '管理访客',
                 icon: 'user-plus',
                 onClick: () => (inviteGuestDialog.show = true),
                 condition: () => !project.doc.archived_at,
               },
               {
-                label: 'Move to another team',
+                label: '移动到另一个团队',
                 icon: 'log-out',
                 onClick: () => (projectMoveDialog.show = true),
                 condition: () => !project.doc.archived_at,
               },
               {
-                label: 'Merge with another project',
+                label: '与另一个项目合并',
                 icon: LucideMerge,
                 onClick: () => (projectMergeDialog.show = true),
               },
               {
-                label: 'Archive this project',
+                label: '归档此项目',
                 icon: 'trash-2',
                 onClick: archiveProject,
                 condition: () => !project.doc.archived_at,
               },
               {
-                label: 'Unarchive this project',
+                label: '取消归档此项目',
                 icon: 'trash-2',
                 onClick: unarchiveProject,
                 condition: () => project.doc.archived_at,
@@ -101,10 +101,10 @@
         </div>
         <Dialog
           :options="{
-            title: 'Edit Project',
+            title: '编辑项目',
             actions: [
               {
-                label: 'Save',
+                label: '保存',
                 variant: 'solid',
                 onClick({ close }) {
                   return project.setValue
@@ -122,17 +122,17 @@
           <template #body-content>
             <FormControl
               class="mb-2"
-              label="Title"
+              label="标题"
               v-model="project.doc.title"
-              placeholder="Project title"
+              placeholder="项目标题"
             />
             <FormControl
               v-if="!team.doc.is_private"
-              label="Visibility"
+              label="可见性"
               type="select"
               :options="[
-                { label: 'Visible to everyone', value: 0 },
-                { label: 'Visible to team members (Private)', value: 1 },
+                { label: '对所有人可见', value: 0 },
+                { label: '仅对团队成员可见（私有）', value: 1 },
               ]"
               v-model="project.doc.is_private"
             />
@@ -141,7 +141,7 @@
         </Dialog>
         <Dialog
           :options="{
-            title: 'Move project to another team',
+            title: '将项目移动到另一个团队',
           }"
           @close="
             () => {
@@ -155,7 +155,7 @@
             <Autocomplete
               :options="moveToTeamsList"
               v-model="projectMoveDialog.team"
-              placeholder="Select a team"
+              placeholder="选择一个团队"
             >
               <template #item-prefix="{ option }">
                 <span class="mr-2">{{ option.icon }}</span>
@@ -175,7 +175,7 @@
                     {
                       validate() {
                         if (!projectMoveDialog.team?.value) {
-                          return 'Team is required to move this project'
+                          return '需要选择一个团队来移动此项目'
                         }
                       },
                       onSuccess() {
@@ -186,13 +186,13 @@
                 }
               "
             >
-              {{ projectMoveDialog.team ? `Move to ${projectMoveDialog.team.label}` : 'Move' }}
+              {{ projectMoveDialog.team ? `移动到 ${projectMoveDialog.team.label}` : '移动' }}
             </Button>
           </template>
         </Dialog>
         <Dialog
           :options="{
-            title: 'Merge with another project',
+            title: '与另一个项目合并',
           }"
           @close="
             () => {
@@ -204,15 +204,15 @@
         >
           <template #body-content>
             <p class="text-p-base text-ink-gray-8 mb-4">
-              This will move all discussions, tasks, and pages from the
-              <span class="whitespace-nowrap font-semibold">{{ project.doc.title }}</span> project
-              to the selected project. This change is irreversible!
+              这将会把所有讨论、任务和页面从
+              <span class="whitespace-nowrap font-semibold">{{ project.doc.title }}</span> 项目
+              移动到所选项目。此更改是不可逆的！
             </p>
             {{ projectMergeDialog.project }}
             <Autocomplete
               :options="mergeProjectsList"
               v-model="projectMergeDialog.project"
-              placeholder="Select a project"
+              placeholder="选择一个项目"
             >
               <template #item-prefix="{ option }">
                 <span class="mr-2">{{ option.icon }}</span>
@@ -232,7 +232,7 @@
                     {
                       validate() {
                         if (!projectMergeDialog.project?.value) {
-                          return 'Please select a project to merge'
+                          return '请选择要合并的项目'
                         }
                       },
                       onSuccess() {
@@ -251,8 +251,8 @@
             >
               {{
                 projectMergeDialog.project
-                  ? `Merge with ${projectMergeDialog.project.label}`
-                  : 'Merge'
+                  ? `与 ${projectMergeDialog.project.label} 合并`
+                  : '合并'
               }}
             </Button>
           </template>
@@ -383,7 +383,7 @@ export default {
         )
       ) {
         items.push({
-          label: 'Discussions',
+          label: '讨论',
           route: {
             name: 'ProjectDiscussions',
             params: {
@@ -409,7 +409,7 @@ export default {
       }
       if (this.$route.name === 'ProjectDiscussionNew') {
         items.push({
-          label: 'New Discussion',
+          label: '新讨论',
           route: {
             name: 'ProjectDiscussionNew',
             params: {
@@ -422,7 +422,7 @@ export default {
 
       if (['ProjectTasks', 'ProjectTaskDetail'].includes(this.$route.name)) {
         items.push({
-          label: 'Tasks',
+          label: '任务',
           route: {
             name: 'ProjectTasks',
             params: {
@@ -450,7 +450,7 @@ export default {
 
       if (['ProjectPages', 'ProjectPage'].includes(this.$route.name)) {
         items.push({
-          label: 'Pages',
+          label: '页面',
           route: {
             name: 'ProjectPages',
             params: {
@@ -482,11 +482,11 @@ export default {
   methods: {
     archiveProject() {
       this.$dialog({
-        title: 'Archive project',
-        message: 'Are you sure you want to archive this project?',
+        title: '归档项目',
+        message: '您确定要归档此项目吗？',
         actions: [
           {
-            label: 'Archive',
+            label: '归档',
             variant: 'solid',
             onClick: (close) => {
               return this.project.archive.submit(null, {
@@ -499,11 +499,11 @@ export default {
     },
     unarchiveProject() {
       this.$dialog({
-        title: 'Unarchive Project',
-        message: 'Are you sure you want to unarchive this project?',
+        title: '取消归档项目',
+        message: '您确定要取消归档此项目吗？',
         actions: [
           {
-            label: 'Unarchive',
+            label: '取消归档',
             variant: 'solid',
             onClick: (close) => {
               return this.project.unarchive.submit(null, {
@@ -512,7 +512,7 @@ export default {
             },
           },
           {
-            label: 'Cancel',
+            label: '取消',
           },
         ],
       })
