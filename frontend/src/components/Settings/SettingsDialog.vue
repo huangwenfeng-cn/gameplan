@@ -45,7 +45,8 @@
 </template>
 <script>
 import { markRaw, ref } from 'vue'
-import { Dialog, Tabs, Tab } from 'frappe-ui'
+import { Dialog, Tabs } from 'frappe-ui'
+import Tab from 'frappe-ui/src/components/Tab.vue'
 import Members from './Members.vue'
 import ArchivedTeams from './ArchivedTeams.vue'
 import InvitePeople from './InvitePeople.vue'
