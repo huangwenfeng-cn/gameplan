@@ -21,8 +21,8 @@
       :class="{ 'mr-3 mt-3': border || editReadme }"
       v-if="editable"
     >
-      <Tooltip v-if="!editReadme && !$readOnlyMode" text="Edit">
-        <Button variant="ghost" label="Edit" @click="editReadmeAndFocus">
+      <Tooltip v-if="!editReadme && !$readOnlyMode" text="编辑">
+        <Button variant="ghost" label="编辑" @click="editReadmeAndFocus">
           <template #icon><LucideEdit2 class="w-4" /> </template>
         </Button>
       </Tooltip>
@@ -36,7 +36,7 @@
           "
         >
           <template #prefix><LucideSave class="w-4" /></template>
-          Save
+          保存
         </Button>
         <Button
           @click="
@@ -47,7 +47,7 @@
           "
         >
           <template #prefix><LucideRotateCcw class="w-4" /></template>
-          Discard
+          放弃
         </Button>
       </template>
     </div>
@@ -56,7 +56,7 @@
       :class="{ 'p-3': border || editReadme }"
       v-if="collapsible && readmeHeight > 150"
     >
-      <Tooltip text="Expand/Collapse">
+      <Tooltip text="展开/折叠">
         <!-- TODO: Tooltip bug, button click fires twice -->
         <div>
           <Button variant="ghost" @click="expand = !expand">

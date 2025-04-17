@@ -54,9 +54,8 @@ class GPTeam(Archivable, Document):
 			self.icon = get_random_gemoji().emoji
 
 		if not self.readme:
-			self.readme = f"""<h3>Welcome to the {self.title} team page!</h3>
-			<p>You can add a brief introduction about the team, important links, resources,
-			and other important information here.</p>
+			self.readme = f"""<h3>欢迎来到{self.title}团队页面！</h3>
+			<p>您可以在这里添加关于团队的简介、重要链接、资源以及其他重要信息。</p>
 			"""
 
 		self.add_member(frappe.session.user)

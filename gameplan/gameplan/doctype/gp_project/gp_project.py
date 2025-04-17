@@ -75,9 +75,8 @@ class GPProject(ManageMembersMixin, Archivable, Document):
 			self.icon = get_random_gemoji().emoji
 
 		if not self.readme:
-			self.readme = f"""<h3>Welcome to the {self.title} page!</h3>
-			<p>You can add a brief introduction about this project, links,
-			resources, and other important information here.</p>
+			self.readme = f"""<h3>欢迎来到{self.title}项目页面！</h3>
+			<p>您可以在这里添加关于此项目的简介、链接、资源以及其他重要信息。</p>
 			"""
 
 		self.append(

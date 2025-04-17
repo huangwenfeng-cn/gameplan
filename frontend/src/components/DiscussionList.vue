@@ -108,7 +108,7 @@
         class="flex flex-col items-center rounded-lg border-2 border-dashed py-8 text-base text-ink-gray-5"
       >
         <LucideCoffee class="h-7 w-7 text-ink-gray-4" />
-        No discussions
+        没有讨论
       </div>
       <div
         class="flex items-center justify-center p-3"
@@ -118,7 +118,7 @@
           <template #prefix>
             <LucideRefreshCw class="h-4 w-4" />
           </template>
-          {{ $resources.discussions.loading ? 'Loading...' : 'Load more' }}
+          {{ $resources.discussions.loading ? '加载中...' : '加载更多' }}
         </Button>
       </div>
     </div>
@@ -180,8 +180,8 @@ export default {
     },
     discussionTimestampDescription(d) {
       return [
-        `First Post: ${this.$dayjs(d.creation)}`,
-        `Latest Post: ${this.$dayjs(d.last_post_at)}`,
+        `首次发布: ${this.$dayjs(d.creation)}`,
+        `最新回复: ${this.$dayjs(d.last_post_at)}`,
       ].join('\n')
     },
   },

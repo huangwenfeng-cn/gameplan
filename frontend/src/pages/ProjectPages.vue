@@ -1,20 +1,20 @@
 <template>
   <div class="py-6">
     <div class="flex items-center justify-between">
-      <div class="text-xl font-semibold">Pages</div>
+      <div class="text-xl font-semibold">页面</div>
       <div class="flex items-center space-x-2">
         <Dropdown
           :options="[
             {
-              label: 'Page Title',
+              label: '页面标题',
               onClick: () => (orderBy = 'title asc'),
             },
             {
-              label: 'Date Updated',
+              label: '更新日期',
               onClick: () => (orderBy = 'modified desc'),
             },
             {
-              label: 'Date Created',
+              label: '创建日期',
               onClick: () => (orderBy = 'creation desc'),
             },
           ]"
@@ -23,13 +23,13 @@
           <Button>
             <div class="flex items-center">
               <ArrowDownUp class="mr-1.5 h-4 w-4 leading-none" :stroke-width="1.5" />
-              <span> Sort </span>
+              <span> 排序 </span>
             </div>
           </Button>
         </Dropdown>
         <Button variant="solid" @click="$resources.newPage.submit()">
           <template #prefix><LucidePlus class="w-4" /></template>
-          Add new
+          添加新页面
         </Button>
       </div>
     </div>
@@ -58,7 +58,7 @@ export default {
           doc: {
             doctype: 'GP Page',
             project: this.project.name,
-            title: 'Untitled',
+            title: '无标题',
             content: '',
           },
         },

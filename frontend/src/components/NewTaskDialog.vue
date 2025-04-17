@@ -119,7 +119,7 @@ function onCreateClick(close) {
     .submit(newTaskDoc, {
       validate() {
         if (!newTask.value.title) {
-          return 'Task title is required'
+          return '任务标题不能为空'
         }
       },
       onSuccess: _onSuccess,

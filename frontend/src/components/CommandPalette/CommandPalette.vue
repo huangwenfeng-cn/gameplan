@@ -203,7 +203,7 @@ export default {
           (e.ctrlKey || e.metaKey) &&
           !e.target.classList.contains('ProseMirror')
         ) {
-          toggleCommandPalette()
+          showCommandPalette()
           e.preventDefault()
         }
       })
